@@ -4,6 +4,8 @@ let countdown;
 const timerDisplay = document.querySelector('.display__time-left');
 const endTime = document.querySelector('.display__end-time');
 const buttons = document.querySelectorAll('[data-time]'); //anything with a data-time attribute
+const blip = document.querySelector('.blip');
+blip.volume = 0.2;
 
 
 function timer(seconds) {
@@ -24,6 +26,7 @@ function timer(seconds) {
 		//check if we should stop the interval
 		if(secondsLeft < 0) {
 			clearInterval(countdown); //stops the interval
+			blip.play();              //plays blip sound at end of timer
 			return;				      //leaves function
 		}
 		//display it
@@ -64,3 +67,4 @@ document.customForm.addEventListener('submit', function(e){
 	timer(mins * 60);
 	this.reset(); //c;lears value from input field
 });
+
